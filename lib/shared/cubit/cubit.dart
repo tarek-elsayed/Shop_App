@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:new_app/shared/cubit/states.dart';
-import 'package:new_app/shared/network/local/cache_helper.dart';
+import 'package:shop/shared/cubit/states.dart';
+import 'package:shop/shared/network/local/cache_helper.dart';
 
 class AppCubit extends Cubit<AppStates> {
   AppCubit() : super(AppInitialState());
@@ -36,10 +36,12 @@ class AppCubit extends Cubit<AppStates> {
     if (fromShared != null) {
       isDark = fromShared;
       emit(AppChangeModeState());
+
+      print("tarek");
     }
     else {
       isDark = !isDark;
-      CacheHelper.putData(key: "isDark", value: isDark).then((value) {
+      CacheHelper.putBoolean(key: "isDark", value: isDark).then((value) {
         emit(AppChangeModeState());
       });
     }

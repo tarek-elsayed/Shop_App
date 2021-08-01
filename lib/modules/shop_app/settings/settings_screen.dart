@@ -7,11 +7,7 @@ class SettingsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Text(
-        'Settings Screen',
-        style: TextStyle(
-          fontSize: 25,
-          fontWeight: FontWeight.bold,
-        ),
+        "Settings Screen",style: Theme.of(context).textTheme.bodyText1,
       ),
     );
   }

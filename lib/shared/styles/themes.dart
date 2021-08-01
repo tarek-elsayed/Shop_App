@@ -1,7 +1,7 @@
  import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:new_app/shared/styles/colors.dart';
+import 'package:shop/shared/styles/colors.dart';
 
 ThemeData darkTheme=ThemeData(
   primarySwatch: defaultColor,
@@ -21,7 +21,7 @@ ThemeData darkTheme=ThemeData(
     iconTheme: IconThemeData(color: Colors.white),
   ),
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      selectedItemColor: Colors.deepOrange,
+      selectedItemColor: defaultColor,
       unselectedItemColor: Colors.white30,
       elevation: 20.0,
       type: BottomNavigationBarType.fixed,
@@ -55,7 +55,7 @@ ThemeData darkTheme=ThemeData(
      iconTheme: IconThemeData(color: Colors.black),
    ),
    bottomNavigationBarTheme: BottomNavigationBarThemeData(
-     selectedItemColor: Colors.deepOrange,
+     selectedItemColor:defaultColor,
      elevation: 20.0,
      type: BottomNavigationBarType.fixed,
    ),

@@ -9,7 +9,7 @@ packages:
     source: hosted
     version: "2.5.0"
   bloc:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: bloc
       url: "https://pub.dartlang.org"
@@ -51,7 +51,7 @@ packages:
     source: hosted
     version: "1.15.0"
   conditional_builder:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: conditional_builder
       url: "https://pub.dartlang.org"
@@ -65,7 +65,7 @@ packages:
     source: hosted
     version: "1.0.3"
   dio:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: dio
       url: "https://pub.dartlang.org"
@@ -98,7 +98,7 @@ packages:
     source: sdk
     version: "0.0.0"
   flutter_bloc:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: flutter_bloc
       url: "https://pub.dartlang.org"
@@ -115,14 +115,14 @@ packages:
     source: sdk
     version: "0.0.0"
   fluttertoast:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: fluttertoast
       url: "https://pub.dartlang.org"
     source: hosted
     version: "8.0.7"
   hexcolor:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: hexcolor
       url: "https://pub.dartlang.org"
@@ -220,7 +220,7 @@ packages:
     source: hosted
     version: "5.0.0"
   shared_preferences:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: shared_preferences
       url: "https://pub.dartlang.org"
@@ -267,7 +267,7 @@ packages:
     source: sdk
     version: "0.0.99"
   smooth_page_indicator:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: smooth_page_indicator
       url: "https://pub.dartlang.org"
@@ -330,7 +330,7 @@ packages:
     source: hosted
     version: "2.1.0"
   webview_flutter:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: webview_flutter
       url: "https://pub.dartlang.org"

@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:new_app/modules/shop_app/login/login_screen.dart';
-import 'package:new_app/shared/components/components.dart';
-import 'package:new_app/shared/styles/colors.dart';
+import 'package:shop/modules/shop_app/login/login_screen.dart';
+import 'package:shop/shared/components/components.dart';
+import 'package:shop/shared/network/local/cache_helper.dart';
+import 'package:shop/shared/styles/colors.dart';
+
 
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -43,6 +45,17 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
 
   bool isLast = false;
 
+  void submit() {
+    CacheHelper.saveData(key: "onBoarding", value: true).then((value) {
+      if (value) {
+        navigateAndFinish(
+          context,
+          ShopLoginScreen(),
+        );
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,10 +63,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           actions: [
             defaultTextButton(
               text: "SKIP",
-              function: () {
-                navigateAndFinish(context, ShopLoginScreen());
-              },
-            )
+              function: submit,
+            ),
           ],
         ),
         body: Padding(
@@ -103,7 +114,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   FloatingActionButton(
                     onPressed: () {
                       if (isLast) {
-                        navigateAndFinish(context, ShopLoginScreen());
+                        submit();
                       } else {
                         pageController.nextPage(
                           duration: Duration(

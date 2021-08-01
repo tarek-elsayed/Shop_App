@@ -1,4 +1,4 @@
-name: new_app
+name: shop
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -23,7 +23,15 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  bloc: ^7.0.0
+  flutter_bloc: ^7.1.0
+  dio: ^4.0.0
+  hexcolor: ^2.0.4
+  shared_preferences: ^2.0.6
+  conditional_builder: ^1.0.2
+  webview_flutter: ^2.0.10
+  smooth_page_indicator: ^0.2.3
+  fluttertoast: ^8.0.7
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -32,15 +40,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  bloc: ^7.0.0
-  flutter_bloc: ^7.0.0
-  dio: ^4.0.0
-  hexcolor: ^2.0.4
-  shared_preferences: ^2.0.6
-  conditional_builder: ^1.0.2
-  webview_flutter: ^2.0.10
-  smooth_page_indicator: ^0.2.3
-  fluttertoast: ^8.0.7
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
