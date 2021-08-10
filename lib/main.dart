@@ -29,10 +29,10 @@ void main() async {
   await CacheHelper.init();
 
   Widget widget;
-  bool isDark = CacheHelper.getData(key: "isDark");
-  bool onBoarding = CacheHelper.getData(key: "onBoarding");
-  token = CacheHelper.getData(key: "token");
-
+  bool isDark = CacheHelper.getData(key: 'isDark');
+  bool onBoarding = CacheHelper.getData(key: 'onBoarding');
+  token = CacheHelper.getData(key: 'token');
+print(token);
   if(onBoarding !=null){
     if(token!=null){
       widget=ShopLayout();
@@ -64,7 +64,10 @@ class MyApp extends StatelessWidget {
             ),
         ),
         BlocProvider(
-            create: (context) => ShopCubit()..getHomeData()
+            create: (context) => ShopCubit()..getHomeData()..getCategoriesData(),
+        ),
+        BlocProvider(
+          create: (context) => ShopCubit()..getHomeData()..getCategoriesData(),
         ),
       ],
       child: BlocConsumer<AppCubit, AppStates>(

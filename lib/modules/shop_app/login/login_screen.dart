@@ -7,6 +7,7 @@ import 'package:shop/modules/shop_app/login/cubit/cubit.dart';
 import 'package:shop/modules/shop_app/login/cubit/states.dart';
 import 'package:shop/modules/shop_app/register/register_screen.dart';
 import 'package:shop/shared/components/components.dart';
+import 'package:shop/shared/network/local/cache_helper.dart';
 
 
 class ShopLoginScreen extends StatelessWidget {
@@ -20,28 +21,28 @@ class ShopLoginScreen extends StatelessWidget {
       create: (BuildContext context) => ShopLoginCubit(),
       child: BlocConsumer<ShopLoginCubit, ShopLoginStates>(
         listener: (context, state) {
-          // if (state is ShopLoginSuccessState) {
-          //   if (state.loginModel.status) {
-          //     print(state.loginModel.data.token);
-          //     print(state.loginModel.message);
-          //     CacheHelper.saveData(key: 'token', value: state.loginModel.data.token,).then((value){
-          //       showToast(
-          //         text: state.loginModel.message,
-          //         state: ToastState.SUCCESS,
-          //       );
-                navigateAndFinish(context, ShopLayout());
-            //   });
-            //
-            // }
-            // else {
-            //   print(state.loginModel.message);
-            //   showToast(
-            //     text: state.loginModel.message,
-            //     state: ToastState.ERROR,
-            //   );
-            // }
-          },
-        // },
+          if (state is ShopLoginSuccessState) {
+            if (state.loginModel.status) {
+              print(state.loginModel.data.token);
+              print(state.loginModel.message);
+              CacheHelper.saveData(key: 'token', value: state.loginModel.data.token,).then((value){
+                showToast(
+                  text: state.loginModel.message,
+                  state: ToastState.SUCCESS,
+                );
+                navigateAndFinish(context,ShopLayout());
+              });
+
+            }
+            else {
+              print(state.loginModel.message);
+              showToast(
+                text: state.loginModel.message,
+                state: ToastState.ERROR,
+              );
+            }
+          }
+        },
         builder: (context, state) {
           return Scaffold(
             appBar: AppBar(),
