@@ -2,8 +2,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop/layout/shop_app/cubit/states.dart';
 import 'package:flutter/material.dart';
 import 'package:shop/model/categories_model.dart';
+import 'package:shop/model/change_favourites_model.dart';
 import 'package:shop/model/favourites_model.dart';
 import 'package:shop/model/home_model.dart';
+import 'package:shop/model/shop_app_model/login_model.dart';
 
 import 'package:shop/modules/shop_app/categories/categories_screen.dart';
 import 'package:shop/modules/shop_app/favourites/favourites_screen.dart';
@@ -68,7 +70,7 @@ class ShopCubit extends Cubit<ShopStates> {
     });
   }
 
-  FavouritesModel favouritesModel;
+  ChangeFavouritesModel changeFavouritesModel;
 
   void changeFavorites(int productId) {
     favourite[productId] = !favourite[productId];
@@ -79,22 +81,81 @@ class ShopCubit extends Cubit<ShopStates> {
       data: {
         'product_id': productId,
       },
-      // token: token,
-    ).then((value)
-    {
-      favouritesModel = FavouritesModel.fromJson(value.data);
+      token: token,
+    ).then((value) {
+      changeFavouritesModel = ChangeFavouritesModel.fromJson(value.data);
       print(value.data);
 
-      if(!favouritesModel.status){
+      if (!changeFavouritesModel.status) {
         favourite[productId] = !favourite[productId];
       }
+      else
+      {
+        getFavorites();
+      }
 
-      emit(ShopSuccessChangeFavouritesState(favouritesModel));
-
+      emit(ShopSuccessChangeFavouritesState(changeFavouritesModel));
     }).catchError((error) {
       favourite[productId] = !favourite[productId];
 
       emit(ShopErrorFavouritesState());
+    });
+  }
+
+  FavouritesModel favouritesModel;
+
+  void getFavorites() {
+    emit(ShopLoadingGetFavouritesState());
+    DioHelper.getData(
+      url: FAVORITES,
+      token: token,
+    ).then((value) {
+      favouritesModel = FavouritesModel.fromJson(value.data);
+
+      emit(ShopSuccessGetFavouritesState());
+    }).catchError((error) {
+      emit(ShopErrorGetFavouritesState());
+    });
+  }
+
+  ShopLoginModel userModel;
+
+  void getUserData() {
+    emit(ShopLoadingGetUserDataState());
+    DioHelper.getData(
+      url: PROFILE,
+      token: token,
+    ).then((value) {
+      userModel = ShopLoginModel.fromJson(value.data);
+print(userModel.data.name);
+      emit(ShopSuccessGetUserDataState(userModel));
+    }).catchError((error) {
+      emit(ShopErrorGetUserDataState());
+    });
+  }
+
+
+  void updateUserData({
+  @required String name,
+    @required String email,
+    @required String phone,
+
+}) {
+    emit(ShopLoadingUpdateUserDataState());
+    DioHelper.putData(
+      url: UPDATE_PROFILE,
+      token: token,
+      data: {
+        'name':name,
+        'email':email,
+        'phone':phone,
+      }
+    ).then((value) {
+      userModel = ShopLoginModel.fromJson(value.data);
+      print(userModel.data.name);
+      emit(ShopSuccessUpdateUserDataState(userModel));
+    }).catchError((error) {
+      emit(ShopErrorUpdateUserDataState());
     });
   }
 }

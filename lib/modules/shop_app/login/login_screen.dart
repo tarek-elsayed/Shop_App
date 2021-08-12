@@ -7,6 +7,7 @@ import 'package:shop/modules/shop_app/login/cubit/cubit.dart';
 import 'package:shop/modules/shop_app/login/cubit/states.dart';
 import 'package:shop/modules/shop_app/register/register_screen.dart';
 import 'package:shop/shared/components/components.dart';
+import 'package:shop/shared/components/constains.dart';
 import 'package:shop/shared/network/local/cache_helper.dart';
 
 
@@ -25,11 +26,14 @@ class ShopLoginScreen extends StatelessWidget {
             if (state.loginModel.status) {
               print(state.loginModel.data.token);
               print(state.loginModel.message);
-              CacheHelper.saveData(key: 'token', value: state.loginModel.data.token,).then((value){
+              CacheHelper.saveData(key: 'token',
+                value: state.loginModel.data.token,
+              ).then((value){
                 showToast(
                   text: state.loginModel.message,
                   state: ToastState.SUCCESS,
                 );
+                token = state.loginModel.data.token;
                 navigateAndFinish(context,ShopLayout());
               });
 
@@ -62,7 +66,7 @@ class ShopLoginScreen extends StatelessWidget {
                               ),
                         ),
                         Text(
-                          'login now to browse our hot offers',
+                          'Login now to browse our hot offers',
                           style: Theme.of(context).textTheme.bodyText1.copyWith(
                                 color: Colors.blueGrey,
                               ),
